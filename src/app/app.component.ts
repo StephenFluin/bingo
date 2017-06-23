@@ -8,6 +8,7 @@ export class AppComponent {
     title = 'app';
     board: boolean[];
     balls: number[];
+    called: number[];
 
     constructor() {
         this.newGame();
@@ -26,12 +27,16 @@ export class AppComponent {
 
         // Shuffle list
         this.shuffle(this.balls);
+        this.called = [];
 
 
     }
     next() {
-        let called = this.balls.pop();
-        this.board[called-1] = true;
+        if (this.balls.length > 0) {
+            let called = this.balls.pop();
+            this.board[called - 1] = true;
+            this.called.unshift(called);
+        }
 
     }
     shuffle(array) {
