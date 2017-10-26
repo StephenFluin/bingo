@@ -10,12 +10,13 @@ export class Sound {
         }
     }
     play(ball: number) {
-        if (this.files[ball]) {
-                this.files[ball].play()
-                .then(() => {})
+        console.log(`Playing sound for ball ${ball}`, this.files[ball - 1]);
+        if (this.files[ball - 1]) {
+            this.files[ball - 1].play()
+                .then(() => { })
                 .catch((error) => {
                     // Couldn't play the music for this ball, but that's okay
                 });
-            }
+        }
     }
 }
