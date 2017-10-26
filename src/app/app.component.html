@@ -31,4 +31,10 @@ table td {
     <td *ngFor="let offset of range(5)" [class.called]="board[i+offset*15]"><span *ngIf="board[i + offset * 15]">{{ i + offset * 15 + 1 }}</span></td>
   </tr>
 </table>
-<p style="margin-top:16px;">Numbers Called: {{called | json}}</p>
+<p style="margin-top:16px;">Numbers Called:
+    <span *ngFor="let ball of called;index as i;count as c;"
+        (click)="sound.play(ball)">
+        {{ball}}
+        <span *ngIf="i < c-1">,</span>
+    </span>
+</p>

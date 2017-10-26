@@ -1,4 +1,5 @@
 import { Component } from '@angular/core';
+import { Sound } from 'app/sound.service';
 
 @Component({
     selector: 'app-root',
@@ -10,8 +11,9 @@ export class AppComponent {
     balls: number[];
     called: number[];
 
-    constructor() {
+    constructor(public sound: Sound) {
         this.newGame();
+        sound.loadAudioFiles();
     }
 
     range(count) {
@@ -35,6 +37,7 @@ export class AppComponent {
         if (this.balls.length > 0) {
             let called = this.balls.pop();
             this.board[called - 1] = true;
+            this.sound.play(called);
             this.called.unshift(called);
         }
 
