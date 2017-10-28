@@ -28,7 +28,7 @@ table td {
 <table>
   <tr><th>B</th><th>I</th><th>N</th><th>G</th><th>O</th></tr>
   <tr *ngFor="let i of range(15)">
-    <td *ngFor="let offset of range(5)" [class.called]="board[i+offset*15]"><span *ngIf="board[i + offset * 15]">{{ i + offset * 15 + 1 }}</span></td>
+    <td *ngFor="let offset of range(5)" [class.called]="board[i+offset*15]" (click)="sound.play(i+offset*15+1)"><span *ngIf="board[i + offset * 15]">{{ i + offset * 15 + 1 }}</span></td>
   </tr>
 </table>
 <p style="margin-top:16px;">Numbers Called:
