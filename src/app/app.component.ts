@@ -1,5 +1,5 @@
 import { Component } from '@angular/core';
-import { Sound } from 'app/sound.service';
+import { Sound } from './sound.service';
 
 @Component({
     selector: 'app-root',
