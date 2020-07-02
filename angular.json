@@ -123,6 +123,10 @@
           }
         }
       }
-    }},
-  "defaultProject": "bingo"
+    }
+  },
+  "defaultProject": "bingo",
+  "cli": {
+    "analytics": "bed4c701-94ff-43d5-a318-e53613c5bc5d"
+  }
 }
