@@ -1,0 +1,5 @@
+[{
+      "relation": ["delegate_permission/common.handle_all_urls"],
+      "target" : { "namespace": "android_app", "package_name": "io.fluin.bingo.twa",
+                   "sha256_cert_fingerprints": ["12:A3:D7:63:F8:8F:50:D3:B7:EE:63:A1:32:06:A9:27:15:62:B2:C0:24:06:76:B5:39:7A:E5:F0:0F:6F:4C:4B"] }
+    }]
