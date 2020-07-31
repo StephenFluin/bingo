@@ -21,6 +21,14 @@ export class AppComponent {
     }
 
     newGame() {
+        // Confirmation alert when starting new game in the middle of existing game
+        if (this.board && this.called.length > 0) {
+          const clearBoard = confirm('Are you sure you want to erase your numbers and start over?');
+          if ( clearBoard === false) {
+            return;
+          }
+        }
+
         // Track status of numbers for easy look up
         this.board = Array.from(Array(75).keys()).map(i => false);
 
