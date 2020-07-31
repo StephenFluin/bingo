@@ -1,40 +1,26 @@
-<style>
-* {
-    box-sizing:border-box;
-}
-table {
-    width:100%;
-    max-width:1024px;
-    min-width:300px;
-    table-layout: fixed;
-    border-collapse: collapse;
-}
-table td {
-    padding:4px;
-    border:1px solid #CCC;
-    text-align:center;
-    height:28px;
-}
-.called {
-    background-color:#CCC
-}
-</style>
+<div class="container">
+  <h1>Bingo</h1>
+  <div class="actions">
+    <button (click)="newGame()">New Game</button>
+    <button (click)="next()">Next Number</button>
+  </div>
 
-
-<h1>Bingo</h1>
-<button (click)="newGame()">New Game</button>
-<button (click)="next()">Next Number</button>
-
-<table>
+  <table>
   <tr><th>B</th><th>I</th><th>N</th><th>G</th><th>O</th></tr>
   <tr *ngFor="let i of range(15)">
     <td *ngFor="let offset of range(5)" [class.called]="board[i+offset*15]" (click)="sound.play(i+offset*15+1)"><span *ngIf="board[i + offset * 15]">{{ i + offset * 15 + 1 }}</span></td>
   </tr>
-</table>
-<p style="margin-top:16px;">Numbers Called:
-    <span *ngFor="let ball of called;index as i;count as c;"
-        (click)="sound.play(ball)">
-        {{ball}}
+  </table>
+
+  <div class="number-summary">
+    <div *ngIf="called.length > 0">
+      <h2>Numbers Called:</h2>
+      <span *ngFor="let ball of called;index as i;count as c;"
+      (click)="sound.play(ball)">
+      {{ball}}
         <span *ngIf="i < c-1">,</span>
-    </span>
-</p>
+      </span>
+    </div>
+    <span *ngIf="called.length == 0">No numbers called. Click the "Next Number" button to start a game.</span>
+  </div>
+</div>
