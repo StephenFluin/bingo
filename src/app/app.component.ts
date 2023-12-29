@@ -1,9 +1,12 @@
 import { Component } from '@angular/core';
 import { Sound } from './sound.service';
+import { NgFor, NgIf } from '@angular/common';
 
 @Component({
     selector: 'app-root',
     templateUrl: './app.component.html',
+    standalone: true,
+    imports: [NgFor, NgIf],
 })
 export class AppComponent {
     title = 'app';
