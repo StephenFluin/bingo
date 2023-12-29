@@ -73,18 +73,18 @@
         "serve": {
           "builder": "@angular-devkit/build-angular:dev-server",
           "options": {
-            "browserTarget": "bingo:build"
+            "buildTarget": "bingo:build"
           },
           "configurations": {
             "production": {
-              "browserTarget": "bingo:build:production"
+              "buildTarget": "bingo:build:production"
             }
           }
         },
         "extract-i18n": {
           "builder": "@angular-devkit/build-angular:extract-i18n",
           "options": {
-            "browserTarget": "bingo:build"
+            "buildTarget": "bingo:build"
           }
         },
         "test": {
