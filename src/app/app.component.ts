@@ -1,20 +1,26 @@
-import { Component } from '@angular/core';
+import { Component, inject } from '@angular/core';
 import { Sound } from './sound.service';
 
 
 @Component({
     selector: 'app-root',
     templateUrl: './app.component.html',
-    standalone: true,
-    imports: [],
+    imports: []
 })
 export class AppComponent {
+    sound = inject(Sound);
+
     title = 'app';
     board: boolean[];
     balls: number[];
     called: number[];
 
-    constructor(public sound: Sound) {
+    /** Inserted by Angular inject() migration for backwards compatibility */
+    constructor(...args: unknown[]);
+
+    constructor() {
+        const sound = this.sound;
+
         this.newGame();
         sound.loadAudioFiles();
     }
