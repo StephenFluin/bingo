@@ -71,7 +71,6 @@ export class HomeComponent {
       array[i] = t;
     }
 
-    console.log(array);
     return array;
   }
 }
