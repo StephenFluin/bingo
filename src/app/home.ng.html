@@ -1,0 +1,52 @@
+<div class="container">
+  <h1>Bingo</h1>
+  <div class="actions">
+    <button (click)="newGame()">New Game</button>
+    <button (click)="next()">Next Number</button>
+  </div>
+
+  <table>
+    <tbody>
+      <tr>
+        <th>B</th>
+        <th>I</th>
+        <th>N</th>
+        <th>G</th>
+        <th>O</th>
+      </tr>
+      @for (i of range(15); track i) {
+      <tr>
+        @for (offset of range(5); track offset) {
+        <td
+          [class.called]="board[i+offset*15]"
+          (click)="sound.play(i+offset*15+1)"
+        >
+          @if (board[i + offset * 15]) {
+          <span>{{ i + offset * 15 + 1 }}</span>
+          }
+        </td>
+        }
+      </tr>
+      }
+    </tbody>
+  </table>
+
+  <div class="number-summary">
+    @if (called.length > 0) {
+    <div>
+      <h2>Numbers Called:</h2>
+      @for (ball of called; track ball; let i = $index; let c = $count) {
+      <span (click)="sound.play(ball)">
+        {{ball}} @if (i < c-1) {
+        <span>,</span>
+        }
+      </span>
+      }
+    </div>
+    } @if (called.length == 0) {
+    <span
+      >No numbers called. Click the "Next Number" button to start a game.</span
+    >
+    }
+  </div>
+</div>

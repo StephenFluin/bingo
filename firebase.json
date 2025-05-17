@@ -1,6 +1,6 @@
 {
   "hosting": {
-    "public": "dist/browser",
+    "public": "dist/bingo/browser",
     "rewrites": [
       {
         "source": "**",
