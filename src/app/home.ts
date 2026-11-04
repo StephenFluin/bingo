@@ -1,8 +1,9 @@
-import { Component, inject } from "@angular/core";
+import { Component, inject, ChangeDetectionStrategy } from "@angular/core";
 import { Sound } from "./sound.service";
 
 @Component({
   selector: "app-home",
+  changeDetection: ChangeDetectionStrategy.Eager,
   templateUrl: "./home.ng.html",
 })
 export class HomeComponent {
