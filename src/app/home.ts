@@ -1,27 +1,21 @@
-import { Component, inject, ChangeDetectionStrategy } from "@angular/core";
+import { Component, inject, signal } from "@angular/core";
 import { Sound } from "./sound.service";
 
 @Component({
   selector: "app-home",
-  changeDetection: ChangeDetectionStrategy.Eager,
   templateUrl: "./home.ng.html",
 })
 export class HomeComponent {
   sound = inject(Sound);
 
   title = "app";
-  board: boolean[];
+  board = signal<boolean[]>([]);
   balls: number[];
-  called: number[];
-
-  /** Inserted by Angular inject() migration for backwards compatibility */
-  constructor(...args: unknown[]);
+  called = signal<number[]>([]);
 
   constructor() {
-    const sound = this.sound;
-
     this.newGame();
-    sound.loadAudioFiles();
+    this.sound.loadAudioFiles();
   }
 
   range(count) {
@@ -30,7 +24,7 @@ export class HomeComponent {
 
   newGame() {
     // Confirmation alert when starting new game in the middle of existing game
-    if (this.board && this.called.length > 0) {
+    if (this.called().length > 0) {
       const clearBoard = confirm(
         "Are you sure you want to erase your numbers and start over?"
       );
@@ -40,21 +34,21 @@ export class HomeComponent {
     }
 
     // Track status of numbers for easy look up
-    this.board = Array.from(Array(75).keys()).map((i) => false);
+    this.board.set(Array.from(Array(75).keys()).map((i) => false));
 
     // Initialize a list of balls
     this.balls = Array.from(Array(75).keys()).map((i) => i + 1);
 
     // Shuffle list
     this.shuffle(this.balls);
-    this.called = [];
+    this.called.set([]);
   }
   next() {
     if (this.balls.length > 0) {
       let called = this.balls.pop();
-      this.board[called - 1] = true;
+      this.board.update((board) => board.map((v, i) => v || i === called - 1));
       this.sound.play(called);
-      this.called.unshift(called);
+      this.called.update((list) => [called, ...list]);
     }
   }
   shuffle(array) {

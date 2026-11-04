@@ -18,10 +18,10 @@
       <tr>
         @for (offset of range(5); track offset) {
         <td
-          [class.called]="board[i+offset*15]"
+          [class.called]="board()[i+offset*15]"
           (click)="sound.play(i+offset*15+1)"
         >
-          @if (board[i + offset * 15]) {
+          @if (board()[i + offset * 15]) {
           <span>{{ i + offset * 15 + 1 }}</span>
           }
         </td>
@@ -32,10 +32,10 @@
   </table>
 
   <div class="number-summary">
-    @if (called.length > 0) {
+    @if (called().length > 0) {
     <div>
       <h2>Numbers Called:</h2>
-      @for (ball of called; track ball; let i = $index; let c = $count) {
+      @for (ball of called(); track ball; let i = $index; let c = $count) {
       <span (click)="sound.play(ball)">
         {{ball}} @if (i < c-1) {
         <span>,</span>
@@ -43,7 +43,7 @@
       </span>
       }
     </div>
-    } @if (called.length == 0) {
+    } @if (called().length == 0) {
     <span
       >No numbers called. Click the "Next Number" button to start a game.</span
     >
